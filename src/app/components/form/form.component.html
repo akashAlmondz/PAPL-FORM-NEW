@@ -1,0 +1,44 @@
+<div class="holder">
+    <img src="../../../assets/Papl.jpg" alt="Logo" class="MainLogo" />
+    <div class="lang">
+      <p class="english" (click)="changeLang('english')">English</p>
+      <p class="hindi" (click)="changeLang('hindi')">हिंदी</p>
+    </div>
+    <form [formGroup]="PaplFormGroup" (ngSubmit)="submitForm(PaplFormGroup.value)">
+      <div class="form-row">
+        <div class="form-input">
+          <mat-form-field appearance="fill">
+            <mat-label>Select Outlet</mat-label>
+            <mat-select formControlName="outletName">
+              <mat-option *ngFor="let outlet of (outlets | async)" [value]="outlet">
+                {{outlet}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="form-input">
+          <mat-form-field appearance="fill">
+            <mat-label>Select Address</mat-label>
+            <mat-select formControlName="address">
+              <mat-option *ngFor="let address of (addresses | async)" [value]="address">
+                {{address}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-input">
+          <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Phone No.</mat-label>
+            <input type="email" matInput errorState="true" formControlName="phoneNumber">
+          </mat-form-field>
+        </div>
+        <div class="form-input"></div>
+      </div>
+      <div class="form-row-btn">
+        <button i18n >{{language === 'english' ? 'Submit' : 'भेजें'}}</button>
+      </div>
+    </form>
+    <h1 class="PAPL-Heading">Premier Alcobev Pvt. Ltd.</h1>
+  </div>

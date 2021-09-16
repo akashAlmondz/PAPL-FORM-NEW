@@ -1,0 +1,170 @@
+.holder {
+  width: 100%;
+  height: 100vh;
+  background-color: #EFEFEF;
+  background-image: url('../../../assets/BottomImage.png');
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: bottom;
+  display: flex;
+  position: relative;
+  overflow-y: auto;
+}
+
+.holder .PAPL-Heading {
+  position: absolute;
+  bottom: 35px;
+  left: 35px;
+  font-family: 'Cinzel', serif;
+  color: white;
+  font-size: 38px;
+  font-weight: bolder;
+}
+
+.holder .PAPL-Heading::before {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 0;
+  width: 50%;
+  height: 2px;
+  background-color: white;
+}
+
+.holder form {
+  width: 75%;
+  height: 60%;
+  background-color: white;
+  margin: auto;
+  box-shadow: 0 8px 16px rgba(225, 225, 225, 0.16);
+  border-radius: 35px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+.form-row {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.form-input {
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0 10%;
+}
+
+.form-input label {
+  font-size: 14px;
+}
+
+/* .form-input input {border: none; border-bottom: 1px solid #888; height: 35px; margin: 10px 0 0; padding: 0 5px; font-size: 18px;}
+.form-input input:focus {outline: none; border-bottom: 1px solid #012469;} */
+.form-row-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.form-row-btn button {
+  padding: 20px 45px;
+  border: none;
+  border-radius: 10px;
+  background-image: linear-gradient(to bottom, #2E5BB4, #012469);
+  color: white;
+  font-size: 18px;
+}
+
+.form-row-btn button:hover {
+  cursor: pointer;
+}
+
+.MainLogo {
+  width: 80px;
+  position: absolute;
+  left: 35px;
+  top: 35px;
+  border-radius: 5px;
+}
+
+.lang {
+  display: flex;
+  position: absolute;
+  top: 35px;
+  right: 35px;
+}
+
+.lang .english,
+.lang .hindi {
+  margin-left: 20px;
+  color: #012469;
+  text-decoration: none;
+}
+
+.lang .english:hover,
+.lang .hindi:hover {
+  cursor: pointer;
+}
+
+@media (max-width: 960px) {
+
+  /* .holder {background-size: cover;} */
+  .holder .PAPL-Heading {
+    position: absolute;
+    bottom: 25px;
+    left: 15px;
+    font-family: 'Cinzel', serif;
+    color: white;
+    font-size: 20px;
+    font-weight: bolder;
+  }
+
+  .holder form {
+    justify-content: space-evenly;
+  }
+
+  .form-row {
+    flex-direction: column;
+    height: 25%;
+    justify-content: space-evenly;
+  }
+
+  .form-input {
+    width: 100%;
+    box-sizing: border-box;
+    height: 40%;
+    margin: 7% 0;
+  }
+
+  .form-row-btn {
+    height: 15%;
+  }
+
+  .form-row-btn button {
+    padding: 15px 30px;
+  }
+}
+
+
+@media(max-height:550px) {
+  .holder {
+    height: auto;
+  }
+
+  .holder form {
+    height: auto;
+    margin: 30vh auto 15vh;
+  }
+
+  .PAPL-Heading {
+    display: none;
+  }
+
+  .form-input {
+    margin: 10% 0px;
+  }
+
+}
