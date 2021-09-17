@@ -8,7 +8,7 @@
       <div class="form-row">
         <div class="form-input">
           <mat-form-field appearance="fill">
-            <mat-label>Select Outlet</mat-label>
+            <mat-label>{{language === 'english' ? 'Select Outlet' : 'आउटलेट का चयन करें'}}</mat-label>
             <mat-select formControlName="outletName">
               <mat-option *ngFor="let outlet of (outlets | async)" [value]="outlet">
                 {{outlet}}
@@ -18,7 +18,7 @@
         </div>
         <div class="form-input">
           <mat-form-field appearance="fill">
-            <mat-label>Select Address</mat-label>
+            <mat-label>{{language === 'english' ? 'Select Address' : 'पता चुनें'}}</mat-label>
             <mat-select formControlName="address">
               <mat-option *ngFor="let address of (addresses | async)" [value]="address">
                 {{address}}
@@ -30,7 +30,7 @@
       <div class="form-row">
         <div class="form-input">
           <mat-form-field class="example-full-width" appearance="fill">
-            <mat-label>Phone No.</mat-label>
+            <mat-label>{{language === 'english' ? 'Phone No.' : 'फ़ोन नंबर'}}</mat-label>
             <input type="email" matInput errorState="true" formControlName="phoneNumber">
           </mat-form-field>
         </div>

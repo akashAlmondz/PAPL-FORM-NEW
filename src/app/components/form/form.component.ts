@@ -15,9 +15,9 @@ export class FormComponent implements OnInit {
 
   constructor(private router: Router, private route: ActivatedRoute, private userService: UserService, private formBuilder: FormBuilder,) {
     this.PaplFormGroup = this.formBuilder.group({
-      outletName: ['', Validators.required],
-      address: ['', Validators.required],
-      phoneNumber: ['', [Validators.required, this.phoneNumberValidation]],
+      outletName: [''],
+      address: [''],
+      phoneNumber: ['', [this.phoneNumberValidation]],
       couponCode: this.params,
     });
   }
@@ -60,7 +60,7 @@ export class FormComponent implements OnInit {
   submitForm(value: any) {
 
     // Form Validation Checking
-    if (this.PaplFormGroup.valid) {
+    if (this.getForm('outletName').value !== '' && this.getForm('address').value !== '' && this.getForm('phoneNumber').value !== '') {
 
       // Geolocation got successfully
       // if (navigator.geolocation.getCurrentPosition) {
@@ -123,12 +123,18 @@ export class FormComponent implements OnInit {
       this.userService.formSubmit(submitData).subscribe(data => {
         // Success Message
         if (data.status === 1) {
-          Swal.fire(
-            'Success.!!',
-            'Form submitted successfully',
-            'success'
-          );
+          // Swal.fire(
+          //   'Success.!!',
+          //   'Form submitted successfully',
+          //   'success'
+          // );
           this.PaplFormGroup.reset();
+          this.PaplFormGroup.patchValue({
+            outletName: '',
+            address: '',
+            phoneNumber: '',
+          });
+          this.router.navigate([`/form-registered/${this.language}`]);
         }
         else if (data.status === 2) {
           // Failure Message For QR Code Data
