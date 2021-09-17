@@ -32,7 +32,6 @@ export class FormComponent implements OnInit {
 
   ngOnInit(): void {
     this.userService.checkUuid(this.params).subscribe(data => {
-      console.log(data);
       if (data.status) {
         console.log('Test');
         this.router.navigate([`/form-registered/${this.language}`]);

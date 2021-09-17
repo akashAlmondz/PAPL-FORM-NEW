@@ -31,7 +31,7 @@
         <div class="form-input">
           <mat-form-field class="example-full-width" appearance="fill">
             <mat-label>{{language === 'english' ? 'Phone No.' : 'फ़ोन नंबर'}}</mat-label>
-            <input type="email" matInput errorState="true" formControlName="phoneNumber">
+            <input type="email" matInput errorState="true" maxlength=10 formControlName="phoneNumber">
           </mat-form-field>
         </div>
         <div class="form-input"></div>
