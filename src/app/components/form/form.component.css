@@ -10,6 +10,15 @@
   position: relative;
   overflow-y: auto;
 }
+.example-form {
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+}
+
+.example-full-width {
+  width: 100%;
+}
 
 .holder .PAPL-Heading {
   position: absolute;

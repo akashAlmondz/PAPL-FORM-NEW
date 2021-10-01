@@ -4,8 +4,8 @@
 
 export const environment = {
   production: false,
-  // authLink: 'http://localhost:3000/api/v1/',
-  authLink: 'http://192.168.21.234:3000/api/v1/',
+  authLink: 'http://localhost:3000/api/v1/',
+  // authLink: 'http://192.168.21.234:3000/api/v1/',
 };
 
 /*
