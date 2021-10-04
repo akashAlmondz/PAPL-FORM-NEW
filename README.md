@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # PAPLFormFrontend
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.2.4.
@@ -28,3 +29,6 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 # PAPL-Form-Frontend
 PAPL Form Frontend
+=======
+# PAPL-FORM-NEW
+>>>>>>> 1b08509e1000a973e402c5299ab4e7c5c6e82254
