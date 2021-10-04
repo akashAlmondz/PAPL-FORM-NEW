@@ -778,9 +778,11 @@ addresss=[
  
   ngOnInit(): void {
     this.userService.checkUuid(this.params).subscribe(data => {
-      if (data.status) {
+      if(data.status===true){
         this.router.navigate([`/form-registered/${this.language}`]);
       }
+         
+   
     });
     
     this.filteredOptions = this.myControl.valueChanges
