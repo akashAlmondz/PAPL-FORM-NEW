@@ -26,7 +26,7 @@ export class FormComponent implements OnInit {
 
   constructor(private router: Router, private route: ActivatedRoute, private userService: UserService, private formBuilder: FormBuilder, ) {
     this.PaplFormGroup = this.formBuilder.group({
-      outletName: ['', Validators.required],
+      outletName: [''],
       address: [''],
       phoneNumber: [''],
       couponCode: this.params,
@@ -46,9 +46,8 @@ export class FormComponent implements OnInit {
       console.log(err);
     });
 
-    this.userService.getAllAddresses().subscribe(data => {
-      this.addresses = data;
-      console.log(data);
+    this.userService.getAllAddresses().subscribe(res => {
+      this.addresses = res;
     }, err => {
       console.log(err);
     });
@@ -58,7 +57,7 @@ export class FormComponent implements OnInit {
       map(value => this._filter(value))
     );
 
-    this.addressFilteredOption = this.getForm('addressValue').valueChanges.pipe(
+    this.addressFilteredOption = this.getForm('address').valueChanges.pipe(
       startWith(''),
       map(value => this._filter2(value))
     );
@@ -70,8 +69,8 @@ export class FormComponent implements OnInit {
   }
 
   private _filter2(value: string): string[] {
-    const filterValue = value.toLowerCase();
-    return this.addresses.filter(option => option.toLowerCase().includes(filterValue));
+    const filterValue2 = value.toLowerCase();
+    return this.addresses.filter(option => option.toLowerCase().includes(filterValue2));
   }
 
 

@@ -14,46 +14,30 @@
                    aria-label="Number"
                    matInput
                    formControlName="outletName"
-                   [matAutocomplete]="auto">
-            <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+                   [matAutocomplete]="auto2">
+            <mat-autocomplete autoActiveFirstOption #auto2="matAutocomplete">
               <mat-option *ngFor="let option of (outletFilteredOption | async)" [value]="option">
                 {{option}}
               </mat-option>
             </mat-autocomplete>
           </mat-form-field>
         </div>
-<!--        <div class="form-input">-->
-<!--          <mat-form-field appearance="fill" formControlName="outletName">-->
-<!--            <mat-label>{{language === 'english' ? 'Select Address' : 'पता चुनें'}}</mat-label>-->
-<!--            <mat-select formControlName="address">-->
-<!--              <input class="optionSearch" type="text"-->
-<!--                 placeholder="Search"-->
-<!--                 aria-label="Number"-->
-<!--                 matInput-->
-<!--                 [formControl]="mycontro"-->
-<!--                 [matAutocomplete]="autoAddress">-->
-<!--             <mat-autocomplete #autoAddress="matAutocomplete">-->
-<!--                 <mat-option *ngFor="let option of filteredOption | async" [value]="option">-->
-<!--                      {{option}}-->
-<!--                 </mat-option>-->
-<!--             </mat-autocomplete>-->
-<!--            </mat-select>-->
-<!--          </mat-form-field>-->
-<!--        </div>-->
-        <mat-form-field class="example-full-width" appearance="fill">
-          <mat-label>Address</mat-label>
-          <input type="text"
-                 placeholder="Pick one"
-                 aria-label="Address"
-                 matInput
-                 formControlName="address"
-                 [matAutocomplete]="auto">
-          <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
-            <mat-option *ngFor="let address of (addressFilteredOption | async)" [value]="address">
-              {{address}}
-            </mat-option>
-          </mat-autocomplete>
-        </mat-form-field>
+        <div class="form-input">
+          <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Address</mat-label>
+            <input type="text"
+                   placeholder="Pick one"
+                   aria-label="Address"
+                   matInput
+                   formControlName="address"
+                   [matAutocomplete]="auto" />
+            <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+              <mat-option *ngFor="let newVal of (addressFilteredOption | async)" [value]="newVal">
+                {{newVal}}
+              </mat-option>
+            </mat-autocomplete>
+          </mat-form-field>
+        </div>
       </div>
       <div class="form-row">
         <div class="form-input">
