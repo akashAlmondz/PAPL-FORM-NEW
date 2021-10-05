@@ -26,8 +26,8 @@ export class FormComponent implements OnInit {
 
   constructor(private router: Router, private route: ActivatedRoute, private userService: UserService, private formBuilder: FormBuilder, ) {
     this.PaplFormGroup = this.formBuilder.group({
-      outletName: [''],
-      address: [''],
+      outletName: ['', Validators.required],
+      address: ['', Validators.required],
       phoneNumber: [''],
       couponCode: this.params,
     });
@@ -92,6 +92,8 @@ export class FormComponent implements OnInit {
   // }
 
   submitForm(value: any) {
+
+    console.log(value);
 
     // Form Validation Checking
     if (this.getForm('outletName').value !== '' && this.getForm('address').value !== '' && this.getForm('phoneNumber').value !== '') {
