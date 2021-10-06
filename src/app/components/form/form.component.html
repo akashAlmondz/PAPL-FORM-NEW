@@ -1,47 +1,41 @@
 <div class="holder">
     <img src="../../../assets/Papl.jpg" alt="Logo" class="MainLogo" />
     <div class="lang">
-      <p class="english" (click)="changeLang('english')">English</p>
-      <p class="hindi" (click)="changeLang('hindi')">हिंदी</p>
+<!--      <p class="english" (click)="changeLang('english')">English</p>-->
+<!--      <p class="hindi" (click)="changeLang('hindi')">हिंदी</p>-->
     </div>
     <form [formGroup]="PaplFormGroup" (ngSubmit)="submitForm(PaplFormGroup.value)">
       <div class="form-row">
         <div class="form-input">
-          <mat-form-field appearance="fill" formControlName="outletName">
-            <mat-label>{{language === 'english' ? 'Select Outlet' : 'आउटलेट का चयन करें'}}</mat-label>
-            <mat-select formControlName="outletName">
-              
-                    <mat-label></mat-label>
-                    <input class="optionSearch" type="text"
-                       placeholder="Search"
-                       aria-label="Number"
-                       matInput
-                       [formControl]="myControl"
-                       [matAutocomplete]="auto">
-                   <mat-autocomplete #auto="matAutocomplete">     
-                       <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
-                            {{option}}
-                       </mat-option> 
-                   </mat-autocomplete>       
-            </mat-select>
+          <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Number</mat-label>
+            <input type="text"
+                   placeholder="Pick one"
+                   aria-label="Number"
+                   matInput
+                   formControlName="outletName"
+                   [matAutocomplete]="auto2">
+            <mat-autocomplete autoActiveFirstOption #auto2="matAutocomplete">
+              <mat-option *ngFor="let option of (outletFilteredOption | async)" [value]="option">
+                {{option}}
+              </mat-option>
+            </mat-autocomplete>
           </mat-form-field>
         </div>
         <div class="form-input">
-          <mat-form-field appearance="fill" formControlName="outletName">
-            <mat-label>{{language === 'english' ? 'Select Address' : 'पता चुनें'}}</mat-label>
-            <mat-select formControlName="address">
-              <input class="optionSearch" type="text"
-                 placeholder="Search"
-                 aria-label="Number"
-                 matInput
-                 [formControl]="mycontro"
-                 [matAutocomplete]="autoAddress">
-             <mat-autocomplete #autoAddress="matAutocomplete">     
-                 <mat-option *ngFor="let option of filteredOption | async" [value]="option">
-                      {{option}}
-                 </mat-option> 
-             </mat-autocomplete>       
-            </mat-select>
+          <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Address</mat-label>
+            <input type="text"
+                   placeholder="Pick one"
+                   aria-label="Address"
+                   matInput
+                   formControlName="address"
+                   [matAutocomplete]="auto" />
+            <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+              <mat-option *ngFor="let newVal of (addressFilteredOption | async)" [value]="newVal">
+                {{newVal}}
+              </mat-option>
+            </mat-autocomplete>
           </mat-form-field>
         </div>
       </div>
