@@ -7,42 +7,46 @@
     <form [formGroup]="PaplFormGroup" (ngSubmit)="submitForm(PaplFormGroup.value)">
       <div class="form-row">
         <div class="form-input">
-          <mat-form-field appearance="fill" formControlName="outletName">
-            <mat-label>{{language === 'english' ? 'Select Outlet' : 'आउटलेट का चयन करें'}}</mat-label>
-            <mat-select formControlName="outletName">
-              
-                    <mat-label></mat-label>
-                    <input class="optionSearch" type="text"
-                       placeholder="Search"
-                       aria-label="Number"
-                       matInput
-                       [formControl]="myControl"
-                       [matAutocomplete]="auto">
-                   <mat-autocomplete #auto="matAutocomplete">     
-                       <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
-                            {{option}}
-                       </mat-option> 
-                   </mat-autocomplete>       
+          <mat-form-field appearance="fill" >
+            <mat-label>{{language === 'english' ? 'Select Area' : 'क्षेत्र का चयन करें'}}</mat-label>
+            <mat-select [formControl]="areaCtrl"   placeholder="Search Area"  #singleSelect>
+              <mat-option >
+                <ngx-mat-select-search [formControl]="areaFilterCtrl" 
+                placeholderLabel="Find area..." 
+                i18n-placeholderLabel
+                noEntriesFoundLabel="'no matching area found'"
+                i18n-noEntriesFoundLabel ></ngx-mat-select-search>
+              </mat-option>
+              <mat-option (click)="pushOutlets()" [value]="area" *ngFor="let area of filteredAreas | async" >{{area.areaName}}</mat-option>
+                          
             </mat-select>
           </mat-form-field>
+          
+         
+         
         </div>
         <div class="form-input">
-          <mat-form-field appearance="fill" formControlName="outletName">
-            <mat-label>{{language === 'english' ? 'Select Address' : 'पता चुनें'}}</mat-label>
-            <mat-select formControlName="address">
-              <input class="optionSearch" type="text"
-                 placeholder="Search"
-                 aria-label="Number"
-                 matInput
-                 [formControl]="mycontro"
-                 [matAutocomplete]="autoAddress">
-             <mat-autocomplete #autoAddress="matAutocomplete">     
-                 <mat-option *ngFor="let option of filteredOption | async" [value]="option">
-                      {{option}}
-                 </mat-option> 
-             </mat-autocomplete>       
+          <mat-form-field appearance="fill">
+            <mat-label>{{language === 'english' ? 'Select Outlet' : 'आउटलेट का चयन करें'}}</mat-label>
+           
+           
+            <mat-select [formControl]="outletCtrl"   placeholder="Search Outlet"  >
+              <mat-option >
+                <ngx-mat-select-search [formControl]="outletFilterCtrl" 
+                placeholderLabel="Find outlet..." 
+                i18n-placeholderLabel
+                noEntriesFoundLabel="'no matching outlet found'"
+                i18n-noEntriesFoundLabel ></ngx-mat-select-search>
+              </mat-option>
+              <mat-option  [value]="Outlet" *ngFor="let outlet of filteredOutlets | async" >{{outlet.outletName}}</mat-option>
+                          
             </mat-select>
+
+
           </mat-form-field>
+          
+
+
         </div>
       </div>
       <div class="form-row">
@@ -59,4 +63,7 @@
       </div>
     </form>
     <h1 class="PAPL-Heading">Premier Alcobev Pvt. Ltd.</h1>
+
+    <!-- <h2  >button</h2> -->
+    
   </div>
