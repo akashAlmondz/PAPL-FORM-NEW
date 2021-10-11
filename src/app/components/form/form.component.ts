@@ -69,9 +69,7 @@ public filteredOutlets: ReplaySubject<Outlet[]> = new ReplaySubject<Outlet[]>(1)
 
 
   
-  // sortOutlets(){
-  //   if (this.areaCtrl.value.areaName==)
-  // }
+ 
 
   protected filterAreas() {
     if (!this.areas) {
@@ -115,15 +113,15 @@ public filteredOutlets: ReplaySubject<Outlet[]> = new ReplaySubject<Outlet[]>(1)
 
 
 
-
+ 
 
   
  filteredOptions: Observable<string[]>;
  filteredOption: Observable<string[]>;
   constructor(private router: Router, private route: ActivatedRoute, private userService: UserService, private formBuilder: FormBuilder,) {
     this.PaplFormGroup = this.formBuilder.group({
-      outletName: [''],
-      address: [''],
+      outlet:[''],
+      area: [''],
       phoneNumber: [''],
       couponCode: this.params,
     });
@@ -205,7 +203,7 @@ public filteredOutlets: ReplaySubject<Outlet[]> = new ReplaySubject<Outlet[]>(1)
     console.log(value);
 
     // Form Validation Checking
-    if (this.getForm('outletName').value !== '' && this.getForm('address').value !== '' && this.getForm('phoneNumber').value !== '') {
+    if (this.getForm('outlet.outletName').value !== '' && this.getForm('address').value !== '' && this.getForm('phoneNumber').value !== '') {
 
       // Geolocation got successfully
       // if (navigator.geolocation.getCurrentPosition) {

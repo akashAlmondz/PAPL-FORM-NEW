@@ -38,7 +38,7 @@
                 noEntriesFoundLabel="'no matching outlet found'"
                 i18n-noEntriesFoundLabel ></ngx-mat-select-search>
               </mat-option>
-              <mat-option  [value]="Outlet" *ngFor="let outlet of filteredOutlets | async" >{{outlet.outletName}}</mat-option>
+              <mat-option  [value]="outlet" *ngFor="let outlet of filteredOutlets | async" >{{outlet.outletName}}</mat-option>
                           
             </mat-select>
 
