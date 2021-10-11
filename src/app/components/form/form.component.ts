@@ -124,7 +124,7 @@ public filteredOutlets: ReplaySubject<Outlet[]> = new ReplaySubject<Outlet[]>(1)
     this.PaplFormGroup = this.formBuilder.group({
       outletName: [''],
       address: [''],
-      phoneNumber: ['', [this.phoneNumberValidation]],
+      phoneNumber: [''],
       couponCode: this.params,
     });
   }
@@ -134,7 +134,6 @@ public filteredOutlets: ReplaySubject<Outlet[]> = new ReplaySubject<Outlet[]>(1)
   latitude = 0;
   longitude = 0;
   language: ILanguage = ILanguage.english;
-  options: Observable<string[]> = this.userService.getAllOutlets();
 
   addresses: Observable<string[]> = this.userService.getAllAddresses();
 
@@ -146,7 +145,7 @@ public filteredOutlets: ReplaySubject<Outlet[]> = new ReplaySubject<Outlet[]>(1)
 
   ngOnInit(): void {
     this.userService.checkUuid(this.params).subscribe(data => {
-      if(data.status===true){
+      if (data.status === true){
         this.router.navigate([`/form-registered/${this.language}`]);
       }
 
@@ -173,28 +172,37 @@ public filteredOutlets: ReplaySubject<Outlet[]> = new ReplaySubject<Outlet[]>(1)
 
    }
 
-  
- 
- 
+  // private _filter(value: string): string[] {
+  //   const filterValue = value.toLowerCase();
+  //   return this.outlets.filter(option => option.toLowerCase().includes(filterValue));
+  // }
 
-  phoneNumberValidation(control: AbstractControl) {
-    if (control.value && control.value.toString().length !== 10) {
-      return { phonevalidation: true };
-    }
-    else {
-      return null;
-    }
-  }
+  // private _filter2(value: string): string[] {
+  //   const filterValue2 = value.toLowerCase();
+  //   return this.addresses.filter(option => option.toLowerCase().includes(filterValue2));
+  // }
 
-  getForm(control: string): AbstractControl | null {
+
+  // phoneNumberValidation(control: AbstractControl) {
+  //   if (control.value && control.value.toString().length !== 10) {
+  //     return { phonevalidation: true };
+  //   }
+  //   else {
+  //     return null;
+  //   }
+  // }
+
+  getForm(control): AbstractControl | null {
     return this.PaplFormGroup.get(control);
   }
 
-  changeLang(value) {
-    this.language = value;
-  }
+  // changeLang(value) {
+  //   this.language = value;
+  // }
 
   submitForm(value: any) {
+
+    console.log(value);
 
     // Form Validation Checking
     if (this.getForm('outletName').value !== '' && this.getForm('address').value !== '' && this.getForm('phoneNumber').value !== '') {
@@ -231,7 +239,7 @@ public filteredOutlets: ReplaySubject<Outlet[]> = new ReplaySubject<Outlet[]>(1)
       //           icon: 'error',
       //           title: "Coupon Code doesn't exist..!!",
       //           text: 'Please try with a different coupon',
-      //         });  
+      //         });
       //       }
       //     }, err => {
 
@@ -249,12 +257,12 @@ public filteredOutlets: ReplaySubject<Outlet[]> = new ReplaySubject<Outlet[]>(1)
       // else {
 
       // Creating Data Object with changes in FormGroup
-      let submitData = {
+      const submitData = {
         ...value,
         phoneNumber: value.phoneNumber.toString(),
         latitude: this.latitude,
         longitude: this.longitude
-      }
+      };
 
       // QR Code Submit API
       this.userService.formSubmit(submitData).subscribe(data => {
@@ -280,7 +288,7 @@ public filteredOutlets: ReplaySubject<Outlet[]> = new ReplaySubject<Outlet[]>(1)
         else {
           Swal.fire({
             icon: 'error',
-            title: "Coupon Code doesn't exist..!!",
+            title: 'Coupon Code doesn\'t exist..!!',
             text: 'Please try with a different coupon',
           });
         }
@@ -290,7 +298,7 @@ public filteredOutlets: ReplaySubject<Outlet[]> = new ReplaySubject<Outlet[]>(1)
         Swal.fire({
           icon: 'error',
           title: 'Please try again..',
-          text: err.error.message ? err.error.message : 'Something went wrong!',
+          text: 'Something went wrong!',
         });
       });
       // }
@@ -308,7 +316,6 @@ public filteredOutlets: ReplaySubject<Outlet[]> = new ReplaySubject<Outlet[]>(1)
 
   }
 
-  
 }
 function x(x: any, arg1: (string: any) => { x: any; }): string {
   throw new Error('Function not implemented.');
