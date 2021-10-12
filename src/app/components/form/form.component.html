@@ -9,7 +9,7 @@
         <div class="form-input">
           <mat-form-field appearance="fill" >
             <mat-label>{{language === 'english' ? 'Select Area' : 'क्षेत्र का चयन करें'}}</mat-label>
-            <mat-select [formControl]="areaCtrl"   placeholder="Search Area"  #singleSelect>
+            <mat-select formControlName='area' (selectionChange)="pushOutlets($event)" placeholder="Search Area"  #singleSelect>
               <mat-option >
                 <ngx-mat-select-search [formControl]="areaFilterCtrl" 
                 placeholderLabel="Find area..." 
@@ -17,7 +17,7 @@
                 noEntriesFoundLabel="'no matching area found'"
                 i18n-noEntriesFoundLabel ></ngx-mat-select-search>
               </mat-option>
-              <mat-option (click)="pushOutlets()" [value]="area" *ngFor="let area of filteredAreas | async" >{{area.areaName}}</mat-option>
+              <mat-option  [value]="area" *ngFor="let area of filteredAreas | async" >{{area.areaName}}</mat-option>
                           
             </mat-select>
           </mat-form-field>
@@ -30,7 +30,7 @@
             <mat-label>{{language === 'english' ? 'Select Outlet' : 'आउटलेट का चयन करें'}}</mat-label>
            
            
-            <mat-select [formControl]="outletCtrl"   placeholder="Search Outlet"  >
+            <mat-select formControlName='outlet'   placeholder="Search Outlet"  >
               <mat-option >
                 <ngx-mat-select-search [formControl]="outletFilterCtrl" 
                 placeholderLabel="Find outlet..." 

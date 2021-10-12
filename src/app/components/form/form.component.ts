@@ -1,7 +1,7 @@
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ILanguage } from 'src/models/form.dto';
+import { FromDto, ILanguage } from 'src/models/form.dto';
 import { UserService } from 'src/services/user.service';
 import Swal from 'sweetalert2';
 import { map, startWith,filter, takeUntil } from 'rxjs/operators';
@@ -43,8 +43,9 @@ export class FormComponent implements OnInit {
 
   
   sortedOutlets = []; 
-  pushOutlets(){
-    this.sortedOutlets = this.areaCtrl.value.outlets;
+  pushOutlets(event:any){
+   console.log( this.PaplFormGroup.controls['area'].value.areaName)
+    this.sortedOutlets = this.PaplFormGroup.controls['area'].value.outlets;
     console.log(this.sortedOutlets)
     this.sortedOutlets.map(x => this.OUTLETS.push({outletName:x}))
     
@@ -191,6 +192,7 @@ public filteredOutlets: ReplaySubject<Outlet[]> = new ReplaySubject<Outlet[]>(1)
   // }
 
   getForm(control): AbstractControl | null {
+    
     return this.PaplFormGroup.get(control);
   }
 
@@ -199,12 +201,14 @@ public filteredOutlets: ReplaySubject<Outlet[]> = new ReplaySubject<Outlet[]>(1)
   // }
 
   submitForm(value: any) {
-
     console.log(value);
-
+    // console.log("area",value.area.areaName,"outletName",value.outlet.outletName);
+    // console.log(this.getForm('area').value.areaName,this.getForm('outlet').value.outletName);
+    const outlet=this.getForm('outlet').value.outletName
+    const areaName=this.getForm('area').value.areaName
     // Form Validation Checking
-    if (this.getForm('outlet.outletName').value !== '' && this.getForm('address').value !== '' && this.getForm('phoneNumber').value !== '') {
-
+    if (outlet!== '' && areaName !== '' && this.getForm('phoneNumber').value !== '') {
+            
       // Geolocation got successfully
       // if (navigator.geolocation.getCurrentPosition) {
       //   navigator.geolocation.getCurrentPosition(position => {
@@ -255,8 +259,10 @@ public filteredOutlets: ReplaySubject<Outlet[]> = new ReplaySubject<Outlet[]>(1)
       // else {
 
       // Creating Data Object with changes in FormGroup
-      const submitData = {
-        ...value,
+      const submitData :any = {
+      
+        outletName:value.outlet.outletName,
+        area:value.area.areaName,
         phoneNumber: value.phoneNumber.toString(),
         latitude: this.latitude,
         longitude: this.longitude
@@ -273,8 +279,8 @@ public filteredOutlets: ReplaySubject<Outlet[]> = new ReplaySubject<Outlet[]>(1)
           // );
           this.PaplFormGroup.reset();
           this.PaplFormGroup.patchValue({
+            area: '',
             outletName: '',
-            address: '',
             phoneNumber: '',
           });
           this.router.navigate([`/form-registered/${this.language}`]);
