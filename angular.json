@@ -62,7 +62,9 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "PAPL-Form-Frontend:build"
+            "browserTarget": "PAPL-Form-Frontend:build",
+            "host": "192.168.21.234",
+            "port": 80
           },
           "configurations": {
             "production": {
