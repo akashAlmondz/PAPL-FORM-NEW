@@ -6,7 +6,7 @@ import { UserService } from 'src/services/user.service';
 import Swal from 'sweetalert2';
 import { map, startWith,filter, takeUntil } from 'rxjs/operators';
 import { Observable, ReplaySubject, Subject} from 'rxjs';
-import { Area, AREAS, Outlet } from 'src/app/areas';
+import { Area, Outlet } from 'src/app/areas';
 import { MatSelect } from '@angular/material/select';
 
 @Component({
@@ -20,16 +20,16 @@ import { MatSelect } from '@angular/material/select';
 export class FormComponent implements OnInit {
 
 
-
+    AREAS: Area[] = []
 
   myControl = new FormControl();
   mycontro=new FormControl();
 
  
 
-
-
-  protected areas: Area[] = AREAS;
+  me=[];
+   
+  public areas: Area[] =this.AREAS;
   public areaCtrl: FormControl = new FormControl();
   public areaFilterCtrl: FormControl = new FormControl();
   public filteredAreas: ReplaySubject<Area[]> = new ReplaySubject<Area[]>(1);
@@ -139,7 +139,7 @@ public filteredOutlets: ReplaySubject<Outlet[]> = new ReplaySubject<Outlet[]>(1)
   
 
 
- 
+
 
 
   ngOnInit(): void {
@@ -152,7 +152,20 @@ public filteredOutlets: ReplaySubject<Outlet[]> = new ReplaySubject<Outlet[]>(1)
          
    
     });
-        
+    
+    
+    this.userService.getAllData().subscribe(x=> {
+
+         this.me=x
+         this.me.map(x=>this.AREAS.push(x));
+      }, err =>
+      {
+        console.log(err)
+      
+      })
+    
+
+
    this.filteredAreas.next(this.areas.slice());
 
    this.areaFilterCtrl.valueChanges
@@ -260,7 +273,7 @@ public filteredOutlets: ReplaySubject<Outlet[]> = new ReplaySubject<Outlet[]>(1)
 
       // Creating Data Object with changes in FormGroup
       const submitData :any = {
-      
+        couponCode:value.couponCode,
         outletName:value.outlet.outletName,
         area:value.area.areaName,
         phoneNumber: value.phoneNumber.toString(),
