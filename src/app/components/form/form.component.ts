@@ -49,6 +49,7 @@ export class FormComponent implements OnInit {
     console.log(this.sortedOutlets)
     this.sortedOutlets.map(x => this.OUTLETS.push({outletName:x}))
     
+    
   }
 
 
@@ -72,7 +73,7 @@ public filteredOutlets: ReplaySubject<Outlet[]> = new ReplaySubject<Outlet[]>(1)
   
  
 
-  protected filterAreas() {
+  public filterAreas() {
     if (!this.areas) {
       return;
     }
@@ -92,7 +93,7 @@ public filteredOutlets: ReplaySubject<Outlet[]> = new ReplaySubject<Outlet[]>(1)
   }
 
 
-  protected filterOutlets() {
+  public filterOutlets() {
     if (!this.outlets) {
       return;
     }
@@ -147,10 +148,6 @@ public filteredOutlets: ReplaySubject<Outlet[]> = new ReplaySubject<Outlet[]>(1)
       if (data.status === true){
         this.router.navigate([`/form-registered/${this.language}`]);
       }
-
-      
-         
-   
     });
     
     
@@ -163,6 +160,8 @@ public filteredOutlets: ReplaySubject<Outlet[]> = new ReplaySubject<Outlet[]>(1)
         console.log(err)
       
       })
+
+
     
 
 
@@ -209,9 +208,9 @@ public filteredOutlets: ReplaySubject<Outlet[]> = new ReplaySubject<Outlet[]>(1)
     return this.PaplFormGroup.get(control);
   }
 
-  // changeLang(value) {
-  //   this.language = value;
-  // }
+  changeLang(value) {
+    this.language = value;
+  }
 
   submitForm(value: any) {
     console.log(value);
@@ -285,6 +284,7 @@ public filteredOutlets: ReplaySubject<Outlet[]> = new ReplaySubject<Outlet[]>(1)
       this.userService.formSubmit(submitData).subscribe(data => {
         // Success Message
         if (data.status === 1) {
+
           // Swal.fire(
           //   'Success.!!',
           //   'Form submitted successfully',
@@ -296,6 +296,19 @@ public filteredOutlets: ReplaySubject<Outlet[]> = new ReplaySubject<Outlet[]>(1)
             outletName: '',
             phoneNumber: '',
           });
+          Swal.fire({
+            imageUrl: "/assets/giphy.gif",
+            width:600,
+            text: data.message,
+            backdrop: `
+            rgba(0,0,0,0)
+           url("/assets/c.gif")
+           center
+           repeat
+  `
+            })
+          
+
           this.router.navigate([`/form-registered/${this.language}`]);
         }
         else if (data.status === 2) {

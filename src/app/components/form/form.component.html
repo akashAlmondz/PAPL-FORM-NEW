@@ -1,15 +1,15 @@
 <div class="holder">
     <img src="../../../assets/Papl.jpg" alt="Logo" class="MainLogo" />
     <div class="lang">
-<!--      <p class="english" (click)="changeLang('english')">English</p>-->
-<!--      <p class="hindi" (click)="changeLang('hindi')">हिंदी</p>-->
+     <p class="english" (click)="changeLang('english')">English</p>
+     <p class="hindi" (click)="changeLang('hindi')">हिंदी</p>
     </div>
     <form [formGroup]="PaplFormGroup" (ngSubmit)="submitForm(PaplFormGroup.value)">
       <div class="form-row">
-        <div class="form-input">
+        <div (click)=filterAreas() class="form-input">
           <mat-form-field appearance="fill" >
             <mat-label>{{language === 'english' ? 'Select Area' : 'क्षेत्र का चयन करें'}}</mat-label>
-            <mat-select formControlName='area' (selectionChange)="pushOutlets($event)" placeholder="Search Area"  #singleSelect>
+            <mat-select  formControlName='area' (selectionChange)="pushOutlets($event)" placeholder="Search Area"  #singleSelect>
               <mat-option >
                 <ngx-mat-select-search [formControl]="areaFilterCtrl" 
                 placeholderLabel="Find area..." 
@@ -25,12 +25,12 @@
          
          
         </div>
-        <div class="form-input">
+        <div (click)=filterOutlets() class="form-input">
           <mat-form-field appearance="fill">
             <mat-label>{{language === 'english' ? 'Select Outlet' : 'आउटलेट का चयन करें'}}</mat-label>
            
            
-            <mat-select formControlName='outlet'   placeholder="Search Outlet"  >
+            <mat-select  formControlName='outlet'   placeholder="Search Outlet"  >
               <mat-option >
                 <ngx-mat-select-search [formControl]="outletFilterCtrl" 
                 placeholderLabel="Find outlet..." 
@@ -63,7 +63,7 @@
       </div>
     </form>
     <h1 class="PAPL-Heading">Premier Alcobev Pvt. Ltd.</h1>
-
+    
     <!-- <h2  >button</h2> -->
     
   </div>

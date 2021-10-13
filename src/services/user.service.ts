@@ -28,6 +28,9 @@ export class UserService {
   formSubmit = (data: FromDto): Observable<FromDtoResponse> => {
     return this.http.post<FromDtoResponse>(`${this.authLink}users`, data);
   }
+  // formSubmitData = (): Observable<any> => {
+  //   return this.http.post<any>(`${this.authLink}users`);
+  // }
 
   getAllData=():Observable<string[]>=>{
     return this.http.get<string[]>(`${this.authLink}users/area-name`)
