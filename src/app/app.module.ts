@@ -11,6 +11,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatSelectModule } from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
 
 @NgModule({
   declarations: [
@@ -27,7 +29,9 @@ import {MatAutocompleteModule} from '@angular/material/autocomplete';
     HttpClientModule,
     MatSelectModule,
     MatInputModule,
-    MatAutocompleteModule
+    MatAutocompleteModule,
+    MatFormFieldModule,
+    NgxMatSelectSearchModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

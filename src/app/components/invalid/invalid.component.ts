@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { UserService } from 'src/services/user.service';
 
 @Component({
   selector: 'app-invalid',
@@ -8,8 +9,9 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class InvalidComponent implements OnInit {
   language: string = 'english';
-
-  constructor(private router: ActivatedRoute) { }
+  
+ 
+  constructor(private router: ActivatedRoute,private userService:UserService) { }
 
   ngOnInit(): void {
     this.router.params.subscribe(route => {
@@ -17,6 +19,9 @@ export class InvalidComponent implements OnInit {
     }, err => {
       console.log(err);
     });
+
   }
+
+ 
 
 }

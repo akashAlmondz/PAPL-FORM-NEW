@@ -1,42 +1,52 @@
 <div class="holder">
     <img src="../../../assets/Papl.jpg" alt="Logo" class="MainLogo" />
     <div class="lang">
-<!--      <p class="english" (click)="changeLang('english')">English</p>-->
-<!--      <p class="hindi" (click)="changeLang('hindi')">हिंदी</p>-->
+     <p class="english" (click)="changeLang('english')">English</p>
+     <p class="hindi" (click)="changeLang('hindi')">हिंदी</p>
     </div>
     <form [formGroup]="PaplFormGroup" (ngSubmit)="submitForm(PaplFormGroup.value)">
       <div class="form-row">
-        <div class="form-input">
-          <mat-form-field class="example-full-width" appearance="fill">
-            <mat-label>Outlet Name</mat-label>
-            <input type="text"
-                   placeholder="Pick one"
-                   aria-label="Outlet Name"
-                   matInput
-                   formControlName="outletName"
-                   [matAutocomplete]="auto2">
-            <mat-autocomplete autoActiveFirstOption #auto2="matAutocomplete">
-              <mat-option *ngFor="let option of (outletFilteredOption | async)" [value]="option">
-                {{option}}
+        <div (click)=filterAreas() class="form-input">
+          <mat-form-field appearance="fill" >
+            <mat-label>{{language === 'english' ? 'Select Area' : 'क्षेत्र का चयन करें'}}</mat-label>
+            <mat-select  formControlName='area' (selectionChange)="pushOutlets($event)" placeholder="Search Area"  #singleSelect>
+              <mat-option >
+                <ngx-mat-select-search [formControl]="areaFilterCtrl" 
+                placeholderLabel="Find area..." 
+                i18n-placeholderLabel
+                noEntriesFoundLabel="'no matching area found'"
+                i18n-noEntriesFoundLabel ></ngx-mat-select-search>
               </mat-option>
-            </mat-autocomplete>
+              <mat-option  [value]="area" *ngFor="let area of filteredAreas | async" >{{area.areaName}}</mat-option>
+                          
+            </mat-select>
           </mat-form-field>
+          
+         
+         
         </div>
-        <div class="form-input">
-          <mat-form-field class="example-full-width" appearance="fill">
-            <mat-label>Address</mat-label>
-            <input type="text"
-                   placeholder="Pick one"
-                   aria-label="Address"
-                   matInput
-                   formControlName="address"
-                   [matAutocomplete]="auto" />
-            <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
-              <mat-option *ngFor="let newVal of (addressFilteredOption | async)" [value]="newVal">
-                {{newVal}}
+        <div (click)=filterOutlets() class="form-input">
+          <mat-form-field appearance="fill">
+            <mat-label>{{language === 'english' ? 'Select Outlet' : 'आउटलेट का चयन करें'}}</mat-label>
+           
+           
+            <mat-select  formControlName='outlet'   placeholder="Search Outlet"  >
+              <mat-option >
+                <ngx-mat-select-search [formControl]="outletFilterCtrl" 
+                placeholderLabel="Find outlet..." 
+                i18n-placeholderLabel
+                noEntriesFoundLabel="'no matching outlet found'"
+                i18n-noEntriesFoundLabel ></ngx-mat-select-search>
               </mat-option>
-            </mat-autocomplete>
+              <mat-option  [value]="outlet" *ngFor="let outlet of filteredOutlets | async" >{{outlet.outletName}}</mat-option>
+                          
+            </mat-select>
+
+
           </mat-form-field>
+          
+
+
         </div>
       </div>
       <div class="form-row">
@@ -53,4 +63,7 @@
       </div>
     </form>
     <h1 class="PAPL-Heading">Premier Alcobev Pvt. Ltd.</h1>
+    
+    <!-- <h2  >button</h2> -->
+    
   </div>

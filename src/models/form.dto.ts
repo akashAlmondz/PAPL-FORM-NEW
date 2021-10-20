@@ -7,7 +7,7 @@ export interface BaseEntity {
 
 export interface FromDto {
     outletName: string;
-    address: string;
+    area: string;
     phoneNumber: string;
     latitude: number;
     longitude: number;
