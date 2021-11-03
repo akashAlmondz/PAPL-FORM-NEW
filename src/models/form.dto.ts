@@ -12,9 +12,11 @@ export interface FromDto {
     latitude: number;
     longitude: number;
     couponCode: string;
+    value:string[];
 }
 
 export interface FromDtoResponse extends BaseEntity {
+    value: any;
     message: string;
     status: number;
 }

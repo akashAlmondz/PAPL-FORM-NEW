@@ -1,12 +1,19 @@
+html,
+body {
+  margin: 0;
+  height: 100%;
+  overflow: hidden
+}
+
 .holder {
   width: 100%;
   height: 100vh;
-  background-color: #EFEFEF;
   background-image: url('../../../assets/BottomImage.png');
   background-repeat: no-repeat;
   background-size: contain;
   background-position: bottom;
   display: flex;
+  flex-direction: column;
   position: relative;
   justify-content: center;
   align-items: center;
@@ -20,6 +27,7 @@
   color: white;
   font-size: 38px;
   font-weight: bolder;
+
 }
 
 .holder .PAPL-Heading::before {
@@ -34,6 +42,8 @@
 
 .form-submit-heading {
   font-size: 40px;
+  margin-top: -15%;
+  margin-bottom: 0%;
 }
 
 .MainLogo {
@@ -62,6 +72,13 @@
     padding: 20px 0 0;
   }
 
+  #message {
+    display: flex;
+    justify-content: center;
+    align-items: wrap;
+    width: 25px;
+  }
+
   .form-row {
     flex-direction: column;
   }
@@ -80,7 +97,48 @@
   }
 
   .form-submit-heading {
-    font-size: 30px;
+    font-size: 25px;
+    margin-top: 10%;
     text-align: center;
   }
+}
+
+
+table {
+  width: 100%;
+  margin: 41px 0 50px 0;
+  border-collapse: collapse;
+  box-shadow: 6px 8px 16px rgba(201, 195, 162, 0.822);
+}
+
+table th {
+  background-color: #E6CCA1;
+  padding: 20px 15px;
+  border-bottom: 1px solid black;
+}
+
+table td {
+  text-align: center;
+  padding: 20px 27px;
+  border-bottom: 1px solid black;
+  background-color: rgb(230, 238, 243);
+}
+
+.head {
+  display: flex;
+  justify-content: space-between;
+}
+
+
+label {
+  font-size: 20px;
+}
+
+.input {
+  border-top: 0px;
+  border-right: 0px;
+  border-left: 0px;
+  margin-left: 10px;
+  padding-left: 2px;
+
 }
