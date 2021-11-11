@@ -9,6 +9,8 @@ import { Observable, ReplaySubject, Subject} from 'rxjs';
 import { Area, Outlet } from 'src/app/areas';
 import { MatSelect } from '@angular/material/select';
 
+
+
 @Component({
   selector: 'app-form',
   templateUrl: './form.component.html',
@@ -277,14 +279,17 @@ public filteredOutlets: ReplaySubject<Outlet[]> = new ReplaySubject<Outlet[]>(1)
         area:value.area.areaName,
         phoneNumber: value.phoneNumber.toString(),
         latitude: this.latitude,
-        longitude: this.longitude
+        longitude: this.longitude,
       };
 
       // QR Code Submit API
       this.userService.formSubmit(submitData).subscribe(data => {
         // Success Message
+        console.log("hi",data.value);
         if (data.status === 1) {
-
+          localStorage.setItem('key',JSON.stringify(data))
+          value= localStorage.getItem('key');
+          let value2=JSON.parse(value);
           // Swal.fire(
           //   'Success.!!',
           //   'Form submitted successfully',
@@ -296,19 +301,33 @@ public filteredOutlets: ReplaySubject<Outlet[]> = new ReplaySubject<Outlet[]>(1)
             outletName: '',
             phoneNumber: '',
           });
-          Swal.fire({
-            imageUrl: "/assets/giphy.gif",
-            width:600,
-            text: data.message,
-            backdrop: `
-            rgba(0,0,0,0)
-           url("/assets/c.gif")
-           center
-           repeat
-  `
-            })
-          
-
+         
+  //         Swal.fire({
+  //           imageUrl: "/assets/giphy.gif",
+  //           text:data.message,
+  //           html:`<table id="table" border=1>
+  //           <thead>
+  //               <tr>
+  //                   <th>Number Of Scan</th>
+  //                   <th>Cashback</th>
+  //               </tr>
+  //           </thead>
+  //           <tbody>
+  //               <tr>
+  //                   <td>${value2.value[0].cashback} </td>
+  //                   <td>{{area.cashback}}</td>
+  //               </tr>
+  //   </tbody>
+  //   </table>`,
+  //           width:600,
+  //           backdrop: `
+  //           rgba(0,0,0,0)
+  //          url("/assets/c.gif")
+  //          center
+  //          repeat
+  // `
+  //           })
+  
           this.router.navigate([`/form-registered/${this.language}`]);
         }
         else if (data.status === 2) {

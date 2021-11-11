@@ -1,5 +1,30 @@
 <div class="holder">
     <img src="../../../assets/Papl.jpg" alt="Logo" class="MainLogo" />
-    <h1 class="form-submit-heading">{{language === 'english' ? 'Your form has been submitted..!!' : 'आपका फॉर्म जमा कर दिया गया है..!!'}}</h1>
+    
+    
+    <div id="content" #content>
+        <p class="form-submit-heading">{{language === 'english' ? 'Your form has been submitted..!!' : 'आपका फॉर्म जमा कर दिया गया है..!!'}}</p>
+        <p id="message">{{value2.message}}</p>
+       
+        <table >
+            <tr>
+            <th >Number Of Scan</th>
+            <th>Total Cashback</th>
+            
+                
+            </tr>
+            
+            <tr *ngFor="let item of value2.value"> 
+               
+                <td  >{{item.numberOfScan}}</td>
+                <td >{{item.cashback}}</td>
+            </tr> 
+            
+        </table>
+        
+    </div>     
+    <img class="buttom" src="/assets/BottomImage.png" alt="">
     <h1 class="PAPL-Heading">Premier Alcobev Pvt. Ltd.</h1>
+    
+    
 </div>
